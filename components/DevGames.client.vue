@@ -104,13 +104,14 @@
               }]"
             >{{ char }}</span>
           </div>
-          <textarea 
+          <input 
             v-model="typeGame.userInput"
             @input="handleTyping"
             :disabled="!typeGame.active"
             placeholder="Start typing here..."
             class="input-area"
-          ></textarea>
+            type="text"
+          />
         </div>
         
         <div v-if="typeGame.gameOver" class="game-over">
@@ -159,7 +160,7 @@
         <div v-if="memoryGame.gameOver" class="game-over">
           <h4>🧠 Memory Master!</h4>
           <p>Completed in {{ memoryGame.moves }} moves</p>
-          <p>Time taken: {{ 60 - memoryGame.timeLeft }}s</p>
+          <p>Time taken: {{ 120 - memoryGame.timeLeft }}s</p>
           <button @click="resetMemoryGame" class="restart-btn">Play Again</button>
         </div>
       </div>
@@ -293,7 +294,7 @@ const typeGame = reactive({
   finalAccuracy: 100,
   currentIndex: 0,
   userInput: '',
-  targetText: 'const fibonacci = (n) => {\n  if (n <= 1) return n;\n  return fibonacci(n - 1) + fibonacci(n - 2);\n};\n\nconst quickSort = (arr) => {\n  if (arr.length <= 1) return arr;\n  const pivot = arr[0];\n  const left = arr.slice(1).filter(x => x < pivot);\n  const right = arr.slice(1).filter(x => x >= pivot);\n  return [...quickSort(left), pivot, ...quickSort(right)];\n};'
+  targetText: 'const fibonacci = (n) => { if (n <= 1) return n; return fibonacci(n - 1) + fibonacci(n - 2); }; const quickSort = (arr) => { if (arr.length <= 1) return arr; const pivot = arr[0]; const left = arr.slice(1).filter(x => x < pivot); const right = arr.slice(1).filter(x => x >= pivot); return [...quickSort(left), pivot, ...quickSort(right)]; };'
 })
 
 let typeGameTimer: NodeJS.Timeout | null = null
@@ -702,15 +703,14 @@ onBeforeUnmount(() => {
 
 .input-area {
   width: 100%;
-  min-height: 120px;
+  height: 3rem;
   background: rgba(30, 27, 75, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 0.5rem;
-  padding: 1rem;
+  padding: 0 1rem;
   color: #e2e8f0;
   font-family: 'Fira Code', monospace;
   font-size: 0.9rem;
-  resize: vertical;
 }
 
 .input-area:focus {
