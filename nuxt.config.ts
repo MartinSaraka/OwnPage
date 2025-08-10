@@ -34,8 +34,10 @@ export default defineNuxtConfig({
     '~/plugins/lenis.client.ts'
   ],
   nitro: {
+    preset: 'vercel',
     prerender: {
       routes: ['/']
     }
-  }
+  },
+  compatibilityDate: '2025-08-10'
 })
