@@ -36,7 +36,7 @@
           <!-- Experience Tab -->
           <div v-if="activeTab === 'experience'" class="tab-panel" data-aos="fade-in">
             <div class="experience-header">
-              <h2>Experience</h2>
+              <h2>Working experience</h2>
               <div class="view-toggle">
                 <button 
                   @click="experienceView = 'classic'"
