@@ -15,6 +15,7 @@ import { ref, onMounted, onUnmounted, computed } from 'vue'
 const angle = ref(0)
 const isVisible = ref(false)
 let animationId = null
+let observer = null
 
 // Orbital properties
 const orbitRadius = 60
@@ -75,7 +76,7 @@ onMounted(() => {
   window.addEventListener('scroll', checkVisibility)
   
   // Start animation when stats become visible
-  const observer = new IntersectionObserver((entries) => {
+  observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && !animationId) {
         isVisible.value = true
@@ -96,6 +97,9 @@ onMounted(() => {
 onUnmounted(() => {
   if (animationId) {
     cancelAnimationFrame(animationId)
+  }
+  if (observer) {
+    observer.disconnect()
   }
   window.removeEventListener('scroll', checkVisibility)
 })
@@ -171,6 +175,26 @@ onUnmounted(() => {
 /* Hide on smaller screens */
 @media (max-width: 768px) {
   .orbiting-rocket {
+    display: block;
+    position: static;
+    transform: none;
+    width: auto;
+    height: auto;
+    margin-bottom: 0.5rem;
+  }
+  
+  .rocket-container {
+    position: static;
+    transform: none !important;
+  }
+  
+  .rocket {
+    font-size: 1.5rem;
+    animation: none;
+    filter: drop-shadow(0 2px 4px rgba(255, 165, 0, 0.4));
+  }
+  
+  .vapor-trail {
     display: none;
   }
 }

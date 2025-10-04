@@ -35,8 +35,26 @@
 
           <!-- Experience Tab -->
           <div v-if="activeTab === 'experience'" class="tab-panel" data-aos="fade-in">
-            <h2>Experience</h2>
-            <div class="experience-cards">
+            <div class="experience-header">
+              <h2>Experience</h2>
+              <div class="view-toggle">
+                <button 
+                  @click="experienceView = 'classic'"
+                  :class="['toggle-btn', { active: experienceView === 'classic' }]"
+                >
+                  📋 Classic View
+                </button>
+                <button 
+                  @click="experienceView = 'gallery'"
+                  :class="['toggle-btn', { active: experienceView === 'gallery' }]"
+                >
+                  🎯 Shooting Gallery
+                </button>
+              </div>
+            </div>
+            
+            <!-- Classic View -->
+            <div v-if="experienceView === 'classic'" class="experience-cards">
               <ExperienceCard
                 v-for="(exp, index) in experiences"
                 :key="index"
@@ -47,6 +65,12 @@
                 :data-aos-delay="index * 80"
               />
             </div>
+            
+            <!-- Shooting Gallery View -->
+            <ShootingGallery 
+              v-else 
+              :experiences="experiences"
+            />
           </div>
 
           <!-- Education Tab -->
@@ -101,6 +125,7 @@
 import { ref } from 'vue'
 
 const activeTab = ref('about')
+const experienceView = ref('classic') // 'classic' or 'gallery'
 
 const tabs = [
   { id: 'about', name: 'About', icon: '👨‍💻' },
@@ -113,21 +138,43 @@ const tabs = [
 // Define the data for experiences
 const experiences = [
   {
+    title: 'Lead Frontend Developer · TME solutions s.r.o.',
+    duration: 'Apr 2025 – Aug 2025 · 5 mos',
+    bullets: [
+      'Led the frontend team and designed architecture using Vue.js, Quasar, React, and TypeScript for medical applications.',
+      'Developed modules for doctors and patients including e-documentation, appointment scheduling, and data visualization.',
+      'Integrated AI for medical image processing and coordinated with backend team (FastAPI, PostgreSQL).',
+      'Managed scaling, code reviews, design system implementation, and delivery quality standards.'
+    ]
+  },
+  {
+    title: 'Senior Fullstack Developer · SYNOT Games SK, s.r.o.',
+    duration: 'Jan 2025 – Apr 2025 · 4 mos',
+    bullets: [
+      'Developed and maintained internal applications for online gaming platform.',
+      'Built responsive frontends using Vue.js, React, and Tailwind with emphasis on performance.',
+      'Implemented backend services in Node.js and Flask, optimizing APIs for high load scenarios.',
+      'Integrated payment systems and security mechanisms with close collaboration with UX and QA teams.'
+    ]
+  },
+  {
     title: 'Senior Fullstack Developer · Annotaid (Medical Annotation & Education Platform)',
-    duration: 'Sep 2023 – May 2025 · 1 yr 9 mos',
+    duration: 'Sep 2023 – Apr 2025 · 1 yr 8 mos',
     bullets: [
       'Developed specialized annotation tools for histopathological images, enabling precise labeling, classification, and segmentation of cancerous cells and pathological structures.',
-      'Integrated AI-powered assistance for image annotation, including visual hints highlighting regions of interest and textual suggestions generated from AI models to guide annotators.',
+      'Created educational modules with role-based access, quizzes, and knowledge tests for medical students.',
+      'Integrated AI-powered assistance for image annotation, including visual hints highlighting regions of interest, textual suggestions, and chatbot functionality.',
       'Contributed to both frontend and backend development using Vue.js, React, Node.js, and Python (FastAPI/Flask), ensuring performance optimization and usability in high-resolution image handling.'
     ]
   },
   {
-    title: 'Full‑stack Developer · Telecom Slovakia, s.r.o.',
-    duration: 'May 2022 – Present',
+    title: 'Senior Fullstack Developer · Telecom Slovakia, s.r.o.',
+    duration: 'May 2022 – Present · 3 yrs',
     bullets: [
       'Designed and implemented an internal application to provision OpenStack/VMware servers, plus several supporting modules.',
-      'Worked with Vue.js, Flask, PostgreSQL, Quasar, Kubernetes and Docker to build scalable, secure solutions.',
-      'Defined testing strategies using pytest and Robot Framework for unit and GUI tests.'
+      'Worked with Vue.js (Quasar), Flask, PostgreSQL, Kubernetes and Docker to build scalable, secure solutions.',
+      'Defined testing strategies using pytest and Robot Framework for unit and GUI tests.',
+      'Collaborated on implementation of digital signatures for internal documents.'
     ]
   },
   {
@@ -140,12 +187,23 @@ const experiences = [
     ]
   },
   {
-    title: 'Co‑founder & Full‑stack Developer · Fit‑Life Platform',
-    duration: 'Sept 2024 – Jan 2025',
+    title: 'Co‑founder & Lead Fullstack Developer · Fitness & Nutrition Tracking App (Startup)',
+    duration: 'Sep 2024 – Jan 2025 · 5 mos',
     bullets: [
-      'Created a modern fitness and nutrition tracking application featuring personalised onboarding and real‑time analytics.',
-      'Integrated Google authentication and designed premium upsell flows for advanced insights and community engagement.',
-      'Used Vue.js, Flask, Quasar, PostgreSQL, Elastic and Docker for robust deployment.'
+      'Co-founded the project and designed full architecture including frontend and backend (Vue.js, Quasar, Flask, PostgreSQL).',
+      'Created a modern fitness and nutrition tracking application with personalized onboarding, calorie tracking, workout planning, and community features.',
+      'Implemented premium modules and integrated external APIs for enhanced functionality.',
+      'Managed deployment and administration using Docker/Kubernetes infrastructure.'
+    ]
+  },
+  {
+    title: 'Fullstack Developer · Open Source - Bounty Hunt',
+    duration: 'Apr 2024 – Sep 2024 · 6 mos',
+    bullets: [
+      'Implemented digital signature functionality (XAdES, PAdES, CAdES), eID integration, and electronic submissions.',
+      'Built document validation and management workflows with complex forms.',
+      'Ensured security, logging, and auditability of all processes with UX consultations for form design.',
+      'Contributed to open-source projects focused on government and legal document processing.'
     ]
   },
   {
@@ -324,6 +382,52 @@ const projects = [
   font-weight: 600;
 }
 
+/* Experience header with toggle */
+.experience-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.experience-header h2 {
+  margin-bottom: 0;
+}
+
+.view-toggle {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(94,96,206,0.05);
+  padding: 0.4rem;
+  border-radius: 0.75rem;
+}
+
+.toggle-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--color-text);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.toggle-btn:hover {
+  background: rgba(94,96,206,0.1);
+  transform: translateY(-1px);
+}
+
+.toggle-btn.active {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  box-shadow: 0 4px 15px rgba(94,96,206,0.3);
+}
+
 /* About styles */
 .about-content {
   max-width: 700px;
@@ -336,11 +440,41 @@ const projects = [
 
 /* Experience styles */
 .experience-cards {
-  display: grid;
+  display: flex;
   gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  max-width: 1000px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 1rem 0.5rem;
   margin: 0 auto;
+  max-width: 100%;
+  /* Hide scrollbar but keep functionality */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 246, 0.3) rgba(0, 0, 0, 0.1);
+}
+
+.experience-cards::-webkit-scrollbar {
+  height: 8px;
+}
+
+.experience-cards::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.experience-cards::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.4);
+  border-radius: 10px;
+}
+
+.experience-cards::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.6);
+}
+
+/* Each experience card should have fixed width */
+.experience-cards > * {
+  flex: 0 0 calc(33.333% - 1rem);
+  min-width: 320px;
+  max-width: 400px;
 }
 
 /* Education styles */
@@ -436,6 +570,7 @@ const projects = [
   .tab-btn {
     justify-content: center;
     padding: 1rem;
+    font-size: 0.85rem;
   }
   
   .tab-panel h2 {
@@ -443,13 +578,143 @@ const projects = [
     margin-bottom: 1.5rem;
   }
   
-  .experience-cards,
+  .view-toggle {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .toggle-btn {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  .experience-cards {
+    gap: 1rem;
+  }
+  
+  .experience-cards > * {
+    flex: 0 0 85%;
+    min-width: 280px;
+  }
+  
   .project-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
   .about-content {
     font-size: 1rem;
+    padding: 0 0.5rem;
+  }
+  
+  .skills-list {
+    gap: 0.6rem;
+    padding: 0 0.5rem;
+  }
+  
+  .skill-tag {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .education-list {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+  
+  .education-list li {
+    padding: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-tabs-section {
+    padding: 1.5rem 0.8rem;
+  }
+  
+  .tabs-container {
+    padding: 1.2rem;
+  }
+  
+  .tab-btn {
+    padding: 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .tab-panel h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .about-content {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .experience-cards > * {
+    flex: 0 0 90%;
+    min-width: 260px;
+  }
+  
+  .skill-tag {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .education-list li {
+    padding: 1rem;
+  }
+  
+  .education-list .degree {
+    font-size: 1rem;
+  }
+  
+  .education-list .institution {
+    font-size: 0.9rem;
+  }
+  
+  .education-list .years {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-tabs-section {
+    padding: 1rem 0.5rem;
+  }
+  
+  .tabs-container {
+    padding: 1rem;
+  }
+  
+  .tab-btn {
+    padding: 0.7rem;
+    font-size: 0.75rem;
+  }
+  
+  .tab-panel h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .about-content {
+    font-size: 0.9rem;
+  }
+  
+  .experience-cards > * {
+    flex: 0 0 95%;
+    min-width: 240px;
+  }
+  
+  .skill-tag {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.7rem;
+  }
+  
+  .education-list li {
+    padding: 0.8rem;
   }
 }
 </style>

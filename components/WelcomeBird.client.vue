@@ -25,6 +25,9 @@ const animationProgress = ref(0)
 
 let welcomeInterval = null
 let animationFrame = null
+let startTimeout = null
+let bubbleTimeout = null
+let flyAwayTimeout = null
 
 // Bird position during different states
 const birdStyle = computed(() => {
@@ -73,9 +76,9 @@ const animateBirdIn = () => {
       showBubble.value = true
       
       // Stay for 3 seconds, then fly away
-      setTimeout(() => {
+      bubbleTimeout = setTimeout(() => {
         showBubble.value = false
-        setTimeout(() => {
+        flyAwayTimeout = setTimeout(() => {
           animateBirdOut()
         }, 300)
       }, 3000)
@@ -121,7 +124,7 @@ const startWelcomeSequence = () => {
 
 onMounted(() => {
   // Start first welcome after 3 seconds
-  setTimeout(() => {
+  startTimeout = setTimeout(() => {
     startWelcomeSequence()
   }, 3000)
   
@@ -137,6 +140,15 @@ onUnmounted(() => {
   }
   if (animationFrame) {
     cancelAnimationFrame(animationFrame)
+  }
+  if (startTimeout) {
+    clearTimeout(startTimeout)
+  }
+  if (bubbleTimeout) {
+    clearTimeout(bubbleTimeout)
+  }
+  if (flyAwayTimeout) {
+    clearTimeout(flyAwayTimeout)
   }
 })
 </script>

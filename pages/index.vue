@@ -1,9 +1,9 @@
 <template>
   <div>
     <GradientMesh />
-    <MagneticParticles />
-    <FloatingIcons />
-    <FlyingBirds />
+    <!-- Disable FloatingIcons and FlyingBirds on mobile for better performance -->
+    <FloatingIcons v-if="!isMobile" />
+    <FlyingBirds v-if="!isMobile" />
     <ContactHeart />
     <!-- Hero Section -->
     <section class="hero">
@@ -17,7 +17,6 @@
         </div>
         <h1>
           <span class="name-text">Martin Saraka</span>
-          <span class="title-subtitle">Elite Full-Stack Developer</span>
         </h1>
         <p class="hero-description">
           Full‑stack developer passionate about building scalable and intuitive web applications with
@@ -39,7 +38,6 @@
             <span>years exp.</span>
           </div>
           <div class="stat productivity-stat">
-            <span class="stat-icon" style="opacity: 0;">🚀</span>
             <strong>10×</strong>
             <span>productivity</span>
             <OrbitingRocket />
@@ -86,6 +84,7 @@
 
 <script setup>
 // Page setup - data is now handled in ProfileTabs component
+const { isMobile } = useDevice()
 
 const scrollToProjects = () => {
   // First scroll to the profile tabs section

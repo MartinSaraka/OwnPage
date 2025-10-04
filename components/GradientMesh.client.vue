@@ -1,16 +1,18 @@
 <template>
-  <div class="gradient-mesh" ref="meshContainer">
+  <div class="gradient-mesh" :class="{ 'mobile-optimized': isMobile }" ref="meshContainer">
     <div class="mesh-blob blob-1"></div>
     <div class="mesh-blob blob-2"></div>
     <div class="mesh-blob blob-3"></div>
-    <div class="mesh-blob blob-4"></div>
-    <div class="mesh-blob blob-5"></div>
+    <!-- Reduce number of blobs on mobile -->
+    <div v-if="!isMobile" class="mesh-blob blob-4"></div>
+    <div v-if="!isMobile" class="mesh-blob blob-5"></div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 
+const { isMobile } = useDevice()
 const meshContainer = ref<HTMLElement>()
 
 onMounted(() => {
@@ -44,6 +46,16 @@ onMounted(() => {
   opacity: 0.7;
   animation: float-mesh var(--duration, 20s) ease-in-out infinite var(--delay, 0s);
   will-change: transform;
+}
+
+/* Mobile optimizations - smaller blobs, less blur */
+@media (max-width: 768px) {
+  .gradient-mesh.mobile-optimized .mesh-blob {
+    width: 300px;
+    height: 300px;
+    filter: blur(40px);
+    opacity: 0.5;
+  }
 }
 
 .blob-1 {

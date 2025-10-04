@@ -33,7 +33,7 @@ const checkScreenSize = () => {
 const initBirds = () => {
   if (!showBirds.value) return
   
-  const birdCount = 8
+  const birdCount = 2
   birds.value = []
   
   for (let i = 0; i < birdCount; i++) {
@@ -104,6 +104,19 @@ const handleScroll = () => {
   })
 }
 
+const handleResize = () => {
+  checkScreenSize()
+  if (showBirds.value) {
+    initBirds()
+    if (!animationId) animateBirds()
+  } else {
+    if (animationId) {
+      cancelAnimationFrame(animationId)
+      animationId = null
+    }
+  }
+}
+
 onMounted(() => {
   checkScreenSize()
   if (showBirds.value) {
@@ -111,19 +124,7 @@ onMounted(() => {
     animateBirds()
   }
   
-  window.addEventListener('resize', () => {
-    checkScreenSize()
-    if (showBirds.value) {
-      initBirds()
-      if (!animationId) animateBirds()
-    } else {
-      if (animationId) {
-        cancelAnimationFrame(animationId)
-        animationId = null
-      }
-    }
-  })
-  
+  window.addEventListener('resize', handleResize)
   window.addEventListener('scroll', handleScroll)
 })
 
@@ -132,7 +133,7 @@ onUnmounted(() => {
     cancelAnimationFrame(animationId)
   }
   window.removeEventListener('scroll', handleScroll)
-  window.removeEventListener('resize', checkScreenSize)
+  window.removeEventListener('resize', handleResize)
 })
 </script>
 

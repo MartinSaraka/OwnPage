@@ -107,10 +107,16 @@
           <input 
             v-model="typeGame.userInput"
             @input="handleTyping"
+            @paste.prevent
+            @copy.prevent
+            @cut.prevent
+            @contextmenu.prevent
             :disabled="!typeGame.active"
             placeholder="Start typing here..."
             class="input-area"
             type="text"
+            autocomplete="off"
+            spellcheck="false"
           />
         </div>
         
@@ -830,10 +836,191 @@ onBeforeUnmount(() => {
   
   .memory-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
   }
   
   .code-grid {
     grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  
+  .game-card {
+    padding: 1.2rem;
+  }
+  
+  .game-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .game-card p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .game-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.85rem;
+  }
+  
+  .stats {
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .stat {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.8rem;
+  }
+  
+  .input-area {
+    height: 2.8rem;
+    font-size: 0.85rem;
+  }
+  
+  .target-text {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  
+  .memory-card .card-front {
+    font-size: 1.3rem;
+  }
+  
+  .memory-card .card-back {
+    font-size: 0.7rem;
+  }
+  
+  .game-over {
+    padding: 1.5rem;
+  }
+  
+  .game-over h4 {
+    font-size: 1.2rem;
+  }
+  
+  .game-over p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .game-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .game-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .game-header p {
+    font-size: 0.9rem;
+  }
+  
+  .game-card {
+    padding: 1rem;
+  }
+  
+  .game-card h3 {
+    font-size: 1.1rem;
+  }
+  
+  .game-card p {
+    font-size: 0.85rem;
+  }
+  
+  .game-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .stats {
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .stat {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+  }
+  
+  .input-area {
+    height: 2.6rem;
+    font-size: 0.8rem;
+  }
+  
+  .target-text {
+    font-size: 0.8rem;
+  }
+  
+  .memory-grid {
+    gap: 0.6rem;
+  }
+  
+  .memory-card .card-front {
+    font-size: 1.2rem;
+  }
+  
+  .memory-card .card-back {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-header h2 {
+    font-size: 1.3rem;
+  }
+  
+  .game-header p {
+    font-size: 0.85rem;
+  }
+  
+  .game-card {
+    padding: 0.8rem;
+  }
+  
+  .game-card h3 {
+    font-size: 1rem;
+  }
+  
+  .game-card p {
+    font-size: 0.8rem;
+  }
+  
+  .game-btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.75rem;
+  }
+  
+  .stats {
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .stat {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.5rem;
+  }
+  
+  .input-area {
+    height: 2.4rem;
+    font-size: 0.75rem;
+  }
+  
+  .target-text {
+    font-size: 0.75rem;
+  }
+  
+  .memory-grid {
+    gap: 0.5rem;
+  }
+  
+  .memory-card .card-front {
+    font-size: 1.1rem;
+  }
+  
+  .memory-card .card-back {
+    font-size: 0.6rem;
   }
 }
 </style>

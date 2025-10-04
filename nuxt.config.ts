@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   ],
   app: {
     head: {
-      title: 'Martin Saraka – Full‑stack Developer',
+      title: 'Martin Saraka – Full‑stack Developer',
       meta: [
         { name: 'description', content: 'Portfolio and biography of Martin Saraka, a full‑stack developer focusing on modern web technologies.' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' }
@@ -37,6 +37,16 @@ export default defineNuxtConfig({
     preset: 'vercel',
     prerender: {
       routes: ['/']
+    },
+    compressPublicAssets: true
+  },
+  // Performance optimizations
+  experimental: {
+    payloadExtraction: false
+  },
+  vite: {
+    build: {
+      cssMinify: 'lightningcss'
     }
   },
   compatibilityDate: '2025-08-10'

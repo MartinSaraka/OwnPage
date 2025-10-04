@@ -22,6 +22,7 @@ interface _GlobalComponents {
     'OrbitingRocket': typeof import("../components/OrbitingRocket.client.vue")['default']
     'ProfileTabs': typeof import("../components/ProfileTabs.vue")['default']
     'ProjectCard': typeof import("../components/ProjectCard.vue")['default']
+    'ShootingGallery': typeof import("../components/ShootingGallery.client.vue")['default']
     'WelcomeBird': typeof import("../components/WelcomeBird.client.vue")['default']
     'NuxtWelcome': typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']
     'NuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
@@ -53,6 +54,7 @@ interface _GlobalComponents {
     'GradientMesh': typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
     'MagneticParticles': typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
     'OrbitingRocket': typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
+    'ShootingGallery': typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
     'WelcomeBird': typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
     'NuxtRouteAnnouncer': typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
       'LazyContactHeart': LazyComponent<typeof import("../components/ContactHeart.client.vue")['default']>
@@ -65,6 +67,7 @@ interface _GlobalComponents {
     'LazyOrbitingRocket': LazyComponent<typeof import("../components/OrbitingRocket.client.vue")['default']>
     'LazyProfileTabs': LazyComponent<typeof import("../components/ProfileTabs.vue")['default']>
     'LazyProjectCard': LazyComponent<typeof import("../components/ProjectCard.vue")['default']>
+    'LazyShootingGallery': LazyComponent<typeof import("../components/ShootingGallery.client.vue")['default']>
     'LazyWelcomeBird': LazyComponent<typeof import("../components/WelcomeBird.client.vue")['default']>
     'LazyNuxtWelcome': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']>
     'LazyNuxtLayout': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']>
@@ -96,6 +99,7 @@ interface _GlobalComponents {
     'LazyGradientMesh': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
     'LazyMagneticParticles': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
     'LazyOrbitingRocket': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
+    'LazyShootingGallery': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
     'LazyWelcomeBird': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
     'LazyNuxtRouteAnnouncer': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
 }
@@ -114,6 +118,7 @@ export const MagneticParticles: typeof import("../components/MagneticParticles.c
 export const OrbitingRocket: typeof import("../components/OrbitingRocket.client.vue")['default']
 export const ProfileTabs: typeof import("../components/ProfileTabs.vue")['default']
 export const ProjectCard: typeof import("../components/ProjectCard.vue")['default']
+export const ShootingGallery: typeof import("../components/ShootingGallery.client.vue")['default']
 export const WelcomeBird: typeof import("../components/WelcomeBird.client.vue")['default']
 export const NuxtWelcome: typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']
 export const NuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
@@ -145,6 +150,7 @@ export const FlyingBirds: typeof import("../node_modules/nuxt/dist/app/component
 export const GradientMesh: typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
 export const MagneticParticles: typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
 export const OrbitingRocket: typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
+export const ShootingGallery: typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
 export const WelcomeBird: typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
 export const NuxtRouteAnnouncer: typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
 export const LazyContactHeart: LazyComponent<typeof import("../components/ContactHeart.client.vue")['default']>
@@ -157,6 +163,7 @@ export const LazyMagneticParticles: LazyComponent<typeof import("../components/M
 export const LazyOrbitingRocket: LazyComponent<typeof import("../components/OrbitingRocket.client.vue")['default']>
 export const LazyProfileTabs: LazyComponent<typeof import("../components/ProfileTabs.vue")['default']>
 export const LazyProjectCard: LazyComponent<typeof import("../components/ProjectCard.vue")['default']>
+export const LazyShootingGallery: LazyComponent<typeof import("../components/ShootingGallery.client.vue")['default']>
 export const LazyWelcomeBird: LazyComponent<typeof import("../components/WelcomeBird.client.vue")['default']>
 export const LazyNuxtWelcome: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']>
 export const LazyNuxtLayout: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']>
@@ -188,6 +195,7 @@ export const LazyFlyingBirds: LazyComponent<typeof import("../node_modules/nuxt/
 export const LazyGradientMesh: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
 export const LazyMagneticParticles: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
 export const LazyOrbitingRocket: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
+export const LazyShootingGallery: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
 export const LazyWelcomeBird: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
 export const LazyNuxtRouteAnnouncer: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
 
