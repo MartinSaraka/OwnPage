@@ -1,0 +1,38 @@
+# Nuxt build outputs
+.nuxt
+.output
+dist
+
+# Vercel
+.vercel
+
+# Dependencies
+node_modules
+
+# Logs
+*.log*
+logs
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cache
+.cache
+*.cache
+
+# Temporary files
+*.tmp
+temp/
