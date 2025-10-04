@@ -236,19 +236,90 @@ const education = Object.freeze([
 
 // Define the data for skills - freeze to prevent Vue reactivity overhead
 const skills = Object.freeze([
+  // Frontend Frameworks & Libraries
   'Vue.js (Options & Composition API)',
-  'Quasar',
-  'Nuxt',
-  'JavaScript / TypeScript',
-  'Python & Flask',
-  'Node.js / Adonis.js',
-  'PostgreSQL & SQL',
-  'Docker & Kubernetes',
-  'HTML5 & CSS3',
-  'Tailwind & SCSS',
-  'Figma & Axure',
+  'React.js',
+  'Nuxt.js',
+  'Next.js',
+  'Quasar Framework',
+  'React Native',
+  
+  // Programming Languages
+  'JavaScript',
+  'TypeScript',
+  'Python',
+  'PHP',
+  'C#',
+  'C',
+  'C++',
+  'Java',
+  'R',
+  
+  // Backend Frameworks
+  'Node.js',
+  'Flask',
+  'Django',
+  'Adonis.js',
+  'FastAPI',
+  '.NET',
+  
+  // Databases
+  'PostgreSQL',
+  'MySQL',
+  'SQL',
+  'NoSQL',
+  'MongoDB',
+  'Redis',
   'Elasticsearch',
-  'React & React Native'
+  
+  // DevOps & Cloud
+  'Docker',
+  'Kubernetes',
+  'CI/CD',
+  'GitHub Actions',
+  'Vercel',
+  'AWS',
+  'Git & GitHub',
+  
+  // Frontend Technologies
+  'HTML5',
+  'CSS3',
+  'SCSS/SASS',
+  'Tailwind CSS',
+  'Bootstrap',
+  'Responsive Design',
+  'WebSockets',
+  
+  // Design & UX
+  'Figma',
+  'Axure',
+  'UX/UI Design',
+  'Adobe XD',
+  
+  // Game Development
+  'Unity',
+  'C# (Unity)',
+  'Game Design',
+  
+  // Testing & Quality
+  'Unit Testing',
+  'Integration Testing',
+  'E2E Testing',
+  'Jest',
+  'Pytest',
+  'Robot Framework',
+  
+  // Other Tools & Concepts
+  'RESTful APIs',
+  'GraphQL',
+  'Microservices',
+  'Agile/Scrum',
+  'Code Review',
+  'Technical Leadership',
+  'System Architecture',
+  'Performance Optimization',
+  'Security Best Practices',
+  'Mathematica'
 ])
 
 // Define the data for projects - freeze to prevent Vue reactivity overhead
