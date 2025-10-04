@@ -37,7 +37,8 @@
           <div v-if="activeTab === 'experience'" class="tab-panel" data-aos="fade-in">
             <div class="experience-header">
               <h2>Working experience</h2>
-              <div class="view-toggle">
+              <!-- Hide Shooting Gallery toggle on mobile -->
+              <div v-if="!isMobile" class="view-toggle">
                 <button 
                   @click="experienceView = 'classic'"
                   :class="['toggle-btn', { active: experienceView === 'classic' }]"
@@ -53,8 +54,8 @@
               </div>
             </div>
             
-            <!-- Classic View -->
-            <div v-if="experienceView === 'classic'" class="experience-cards">
+            <!-- Classic View (always on mobile) -->
+            <div v-if="experienceView === 'classic' || isMobile" class="experience-cards">
               <ExperienceCard
                 v-for="(exp, index) in experiences"
                 :key="index"
@@ -66,9 +67,9 @@
               />
             </div>
             
-            <!-- Shooting Gallery View -->
+            <!-- Shooting Gallery View (desktop only) -->
             <ShootingGallery 
-              v-else 
+              v-else-if="!isMobile" 
               :experiences="experiences"
             />
           </div>
@@ -126,6 +127,7 @@ import { ref } from 'vue'
 
 const activeTab = ref('about')
 const experienceView = ref('classic') // 'classic' or 'gallery'
+const { isMobile } = useDevice()
 
 const tabs = [
   { id: 'about', name: 'About', icon: '👨‍💻' },

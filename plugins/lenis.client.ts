@@ -2,6 +2,10 @@ import Lenis from 'lenis'
 
 export default defineNuxtPlugin(() => {
   if (!process.client) return
+  
+  // Disable smooth scrolling on mobile for better performance
+  const isMobile = window.innerWidth < 768
+  if (isMobile) return
 
   const lenis = new Lenis({
     duration: 0.8, // Reduced from 1.1 for snappier feel

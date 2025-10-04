@@ -1,8 +1,14 @@
 export default defineNuxtPlugin((nuxtApp) => {
   if (!process.client) return
+  
+  // Disable tilt on mobile for better performance
+  const isMobile = window.innerWidth < 768
 
   nuxtApp.vueApp.directive('tilt', {
     mounted(el: HTMLElement, binding) {
+      // Skip tilt effect on mobile
+      if (isMobile) return
+      
       const maxTilt = typeof binding.value === 'number' ? binding.value : 8
       let requestId: number | null = null
       let currentX = 0

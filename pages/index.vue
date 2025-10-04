@@ -1,6 +1,7 @@
 <template>
   <div>
-    <GradientMesh />
+    <GradientMesh v-if="!isMobile" />
+    <MagneticParticles v-if="!isMobile" />
     <!-- Disable FloatingIcons and FlyingBirds on mobile for better performance -->
     <FloatingIcons v-if="!isMobile" />
     <FlyingBirds v-if="!isMobile" />

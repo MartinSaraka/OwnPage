@@ -3,15 +3,18 @@ import 'aos/dist/aos.css'
 
 export default defineNuxtPlugin(() => {
   if (process.client) {
+    // Detect mobile device
+    const isMobile = window.innerWidth < 768
+    
     AOS.init({
-      duration: 500, // Reduced from 700ms for snappier animations
+      duration: isMobile ? 300 : 500, // Faster animations on mobile
       easing: 'ease-out-cubic',
       once: true, // Run animations only once to reduce overhead
       offset: 60, // Trigger slightly earlier
       delay: 0,
-      throttleDelay: 99, // Throttle scroll events for better performance
-      debounceDelay: 50, // Debounce window resize events
-      disable: false,
+      throttleDelay: isMobile ? 150 : 99, // More throttling on mobile
+      debounceDelay: isMobile ? 100 : 50, // More debouncing on mobile
+      disable: isMobile ? 'mobile' : false, // Disable AOS on mobile for performance
       startEvent: 'DOMContentLoaded',
       initClassName: 'aos-init',
       animatedClassName: 'aos-animate',
