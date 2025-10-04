@@ -23,7 +23,7 @@
             <h2>About Me</h2>
             <div class="about-content">
               <p>
-                Equipped with a master's degree in Information Technology and nearly five
+                Equipped with a master's degree in Information Technology and five
                 years of practical experience, I am a dedicated full‑stack developer
                 focusing on Vue.js. I'm valued for my adaptability, communication
                 skills and ability to quickly learn new technologies. I continually
