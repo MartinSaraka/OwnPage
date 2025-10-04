@@ -44,10 +44,5 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: false
   },
-  vite: {
-    build: {
-      cssMinify: 'lightningcss'
-    }
-  },
   compatibilityDate: '2025-08-10'
 })
