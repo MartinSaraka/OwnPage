@@ -7,14 +7,14 @@ export default defineNuxtPlugin(() => {
     const isMobile = window.innerWidth < 768
     
     AOS.init({
-      duration: isMobile ? 300 : 500, // Faster animations on mobile
+      duration: isMobile ? 200 : 500, // Faster animations on mobile
       easing: 'ease-out-cubic',
       once: true, // Run animations only once to reduce overhead
       offset: 60, // Trigger slightly earlier
       delay: 0,
       throttleDelay: isMobile ? 150 : 99, // More throttling on mobile
       debounceDelay: isMobile ? 100 : 50, // More debouncing on mobile
-      disable: isMobile ? 'mobile' : false, // Disable AOS on mobile for performance
+      disable: false, // Keep AOS enabled but with shorter duration on mobile
       startEvent: 'DOMContentLoaded',
       initClassName: 'aos-init',
       animatedClassName: 'aos-animate',

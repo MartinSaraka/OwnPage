@@ -129,17 +129,17 @@ const activeTab = ref('about')
 const experienceView = ref('classic') // 'classic' or 'gallery'
 const { isMobile } = useDevice()
 
-// Static data - freeze to prevent Vue reactivity overhead
-const tabs = Object.freeze([
+// Static data
+const tabs = [
   { id: 'about', name: 'About', icon: '👨‍💻' },
   { id: 'experience', name: 'Experience', icon: '💼' },
   { id: 'education', name: 'Education', icon: '🎓' },
   { id: 'skills', name: 'Skills', icon: '🛠️' },
   { id: 'projects', name: 'Projects', icon: '🚀' }
-])
+]
 
-// Define the data for experiences - freeze to prevent Vue reactivity overhead
-const experiences = Object.freeze([
+// Define the data for experiences
+const experiences = [
   {
     title: 'Lead Frontend Developer · TME solutions s.r.o.',
     duration: 'Apr 2025 – Aug 2025 · 5 mos',
@@ -218,10 +218,10 @@ const experiences = Object.freeze([
       'Implemented Elasticsearch‑powered search and analytics and orchestrated Docker containers for deployment.'
     ]
   }
-])
+]
 
-// Define the data for education - freeze to prevent Vue reactivity overhead
-const education = Object.freeze([
+// Define the data for education
+const education = [
   {
     degree: 'Master of Intelligent Software Systems',
     institution: 'Faculty of Informatics and Information Technologies, STU Bratislava',
@@ -232,10 +232,10 @@ const education = Object.freeze([
     institution: 'Faculty of Informatics and Information Technologies, STU Bratislava',
     years: '2019 – 2023'
   }
-])
+]
 
-// Define the data for skills - freeze to prevent Vue reactivity overhead
-const skills = Object.freeze([
+// Define the data for skills
+const skills = [
   // Frontend Frameworks & Libraries
   'Vue.js (Options & Composition API)',
   'React.js',
@@ -320,10 +320,10 @@ const skills = Object.freeze([
   'Performance Optimization',
   'Security Best Practices',
   'Mathematica'
-])
+]
 
-// Define the data for projects - freeze to prevent Vue reactivity overhead
-const projects = Object.freeze([
+// Define the data for projects
+const projects = [
   {
     title: 'NFT Tower Defense Game',
     description: 'Designed and implemented core gameplay mechanics for a tower‑defense game built in Unity with NFT integration.',
@@ -360,7 +360,7 @@ const projects = Object.freeze([
     tags: ['JavaScript', 'HTML5', 'CSS3'],
     image: undefined
   }
-])
+]
 </script>
 
 <style scoped>
