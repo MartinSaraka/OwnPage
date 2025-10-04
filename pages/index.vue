@@ -4,7 +4,6 @@
     <MagneticParticles v-if="!isMobile" />
     <!-- Disable FloatingIcons and FlyingBirds on mobile for better performance -->
     <FloatingIcons v-if="!isMobile" />
-    <FlyingBirds v-if="!isMobile" />
     <ContactHeart />
     <!-- Hero Section -->
     <section class="hero">

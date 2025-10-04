@@ -151,7 +151,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, shallowRef, onMounted, onBeforeUnmount } from 'vue'
 
 interface Experience {
   title: string
@@ -173,8 +173,9 @@ const hitTargets = ref<number[]>([])
 const activeTarget = ref<number | null>(null)
 const selectedExperience = ref<Experience | null>(null)
 const isShooting = ref(false)
-const bullets = ref<Array<{ x: number; y: number; angle: number; length: number; opacity: number }>>([])
-const particles = ref<Array<{ x: number; y: number; color: string; opacity: number }>>([])
+// Use shallowRef for performance - we mutate objects but replace array
+const bullets = shallowRef<Array<{ x: number; y: number; angle: number; length: number; opacity: number }>>([])
+const particles = shallowRef<Array<{ x: number; y: number; color: string; opacity: number }>>([])
 const crosshairPosition = ref({ left: '50%', top: '50%' })
 
 // Generate short titles from full titles
