@@ -25,7 +25,7 @@
               <p>
                 Equipped with a master's degree in Information Technology and five
                 years of practical experience, I am a dedicated full‑stack developer
-                focusing on Vue.js. I'm valued for my adaptability, communication
+                focusing on Vue.js and AI intergrations. I'm valued for my adaptability, communication
                 skills and ability to quickly learn new technologies. I continually
                 seek opportunities to broaden my knowledge and innovate within the
                 IT sector.
