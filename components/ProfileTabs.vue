@@ -637,14 +637,35 @@ const projects = Object.freeze([
   }
   
   .tab-buttons {
-    flex-direction: column;
-    gap: 0.3rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 0.5rem;
+    justify-content: flex-start;
+    padding: 0.8rem 0.5rem;
+    /* Hide scrollbar but keep functionality */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(94,96,206,0.3) transparent;
+  }
+  
+  .tab-buttons::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  .tab-buttons::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .tab-buttons::-webkit-scrollbar-thumb {
+    background: rgba(94,96,206,0.3);
+    border-radius: 10px;
   }
   
   .tab-btn {
     justify-content: center;
     padding: 1rem;
     font-size: 0.85rem;
+    flex-shrink: 0;
+    min-width: fit-content;
   }
   
   .tab-panel h2 {
