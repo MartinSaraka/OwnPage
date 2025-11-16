@@ -30,6 +30,10 @@ html {
   /* Hardware acceleration for smooth scrolling */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Better touch handling on mobile */
+  -webkit-tap-highlight-color: rgba(94, 96, 206, 0.2);
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
 }
 
 html, body {
@@ -39,6 +43,10 @@ html, body {
   background-color: var(--color-bg);
   color: var(--color-text);
   scroll-behavior: smooth;
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 
 img {
@@ -50,21 +58,38 @@ a {
   color: var(--color-primary);
   text-decoration: none;
   transition: color var(--transition-speed);
+  /* Better touch targets */
+  -webkit-tap-highlight-color: rgba(94, 96, 206, 0.2);
 }
 
 a:hover {
   color: var(--color-accent);
 }
 
+a:active {
+  opacity: 0.8;
+}
+
 /* Section styling */
 section {
   padding: 3rem 1rem;
   position: relative;
+  /* Prevent content from jumping on mobile */
+  overflow-x: hidden;
 }
 
 section:not(.hero) {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+/* Better button and interactive elements for touch */
+button, .cta, .tab-btn, .toggle-btn {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* Reduced spacing for mobile */
@@ -538,6 +563,74 @@ section:not(.hero) {
 @media (max-width: 768px) {
   .exp-card {
     backdrop-filter: blur(5px);
+    padding: 1.2rem;
+  }
+  
+  .exp-card h3 {
+    font-size: 1.05rem;
+    line-height: 1.4;
+    margin-bottom: 0.6rem;
+  }
+  
+  .exp-card .duration {
+    font-size: 0.85rem;
+    margin-bottom: 0.9rem;
+  }
+  
+  .exp-card ul {
+    padding-left: 1rem;
+  }
+  
+  .exp-card ul li {
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .exp-card {
+    padding: 1rem;
+  }
+  
+  .exp-card h3 {
+    font-size: 0.98rem;
+    line-height: 1.35;
+  }
+  
+  .exp-card .duration {
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .exp-card ul li {
+    font-size: 0.88rem;
+    line-height: 1.45;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .exp-card {
+    padding: 0.9rem;
+  }
+  
+  .exp-card h3 {
+    font-size: 0.95rem;
+    line-height: 1.3;
+  }
+  
+  .exp-card .duration {
+    font-size: 0.78rem;
+  }
+  
+  .exp-card ul {
+    padding-left: 0.9rem;
+  }
+  
+  .exp-card ul li {
+    font-size: 0.85rem;
+    line-height: 1.4;
   }
 }
 
@@ -772,6 +865,28 @@ section:not(.hero) {
   }
 }
 
+/* Safe area insets for devices with notch */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+  
+  .hero {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
+/* Optimize font rendering for mobile */
+@media (max-width: 768px) {
+  body {
+    /* Better text rendering on mobile */
+    text-rendering: optimizeSpeed;
+    -webkit-text-size-adjust: 100%;
+  }
+}
+
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   section {
@@ -779,97 +894,120 @@ section:not(.hero) {
   }
   
   .hero {
-    min-height: 80vh;
-    padding: 1rem;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    display: flex;
+    align-items: center;
   }
   
   .hero .hero-content {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
     max-width: 100%;
-    margin: 0 0.5rem;
+    margin: 0 auto;
+    width: 100%;
     /* Reduce backdrop-filter blur on mobile for better performance */
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
   }
   
   .hero h1 {
-    font-size: 2.2rem;
-    margin-bottom: 0.8rem;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
   }
   
   .hero-description {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    padding: 0 0.5rem;
   }
   
   .hero-actions {
     flex-direction: column;
-    gap: 1rem;
-    align-items: center;
+    gap: 0.8rem;
+    align-items: stretch;
+    width: 100%;
   }
   
   .cta {
     width: 100%;
-    max-width: 280px;
+    max-width: 100%;
     text-align: center;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
   }
   
   .hero .badge {
-    font-size: 0.9rem;
-    padding: 0.8rem 1.2rem;
+    font-size: 0.95rem;
+    padding: 0.9rem 1.3rem;
     margin: 1.5rem auto;
+    display: flex;
+    width: fit-content;
   }
   
   .hero .hero-stats {
     grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 1rem;
-    margin-top: 1.5rem;
-    max-width: 300px;
+    gap: 0.8rem;
+    padding: 1.2rem;
+    margin-top: 2rem;
+    max-width: 100%;
+    width: 100%;
   }
   
   .hero .hero-stats .stat {
     flex-direction: row;
-    gap: 0.8rem;
+    justify-content: flex-start;
+    gap: 1rem;
     text-align: left;
-    padding: 0.8rem;
-    background: rgba(255,255,255,0.1);
-    border-radius: 0.8rem;
-    border: 1px solid rgba(255,255,255,0.2);
+    padding: 1rem;
+    background: rgba(255,255,255,0.12);
+    border-radius: 1rem;
+    border: 1.5px solid rgba(255,255,255,0.25);
   }
   
   .hero .hero-stats .stat strong {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    min-width: 60px;
   }
   
   .hero .hero-stats .stat span {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
   }
   
   .hero-icons {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    gap: 3rem;
   }
   
   .knight-icon, .laptop-icon {
-    font-size: 2rem;
+    font-size: 3rem;
   }
   
   .title-subtitle {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
   
   .name-text {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
 }
 
 @media (max-width: 600px) {
+  .hero {
+    padding: 1.5rem 0.8rem;
+  }
+  
   .hero h1 {
     font-size: 2rem;
+    margin-bottom: 0.8rem;
   }
   
   .hero p {
     font-size: 0.95rem;
+    line-height: 1.6;
   }
   
   section {
@@ -877,64 +1015,95 @@ section:not(.hero) {
   }
   
   .hero .hero-content {
-    padding: 1.2rem;
-    margin: 0 0.3rem;
+    padding: 1.5rem 1rem;
+    margin: 0;
+    width: 100%;
   }
   
   .hero .hero-stats {
-    max-width: 280px;
-    padding: 0.8rem;
+    max-width: 100%;
+    padding: 1rem;
+    gap: 0.6rem;
   }
   
   .hero .hero-stats .stat {
-    padding: 0.6rem;
+    padding: 0.8rem;
   }
   
   .cta {
-    max-width: 260px;
-    padding: 0.8rem 1.2rem;
-    font-size: 0.9rem;
+    max-width: 100%;
+    padding: 0.9rem 1.5rem;
+    font-size: 0.95rem;
   }
   
   .hero .badge {
     font-size: 0.85rem;
-    padding: 0.7rem 1rem;
+    padding: 0.8rem 1.1rem;
+  }
+  
+  .hero-icons {
+    gap: 2rem;
+  }
+  
+  .knight-icon, .laptop-icon {
+    font-size: 2.5rem;
   }
 }
 
 @media (max-width: 480px) {
+  .hero {
+    padding: 1rem 0.5rem;
+    min-height: 100vh;
+  }
+  
   .hero h1 {
     font-size: 1.8rem;
   }
   
   .hero-description {
     font-size: 0.9rem;
+    line-height: 1.6;
+    padding: 0 0.25rem;
   }
   
   .hero .hero-content {
-    padding: 1rem;
-    margin: 0 0.2rem;
+    padding: 1.5rem 1rem;
+    margin: 0;
+    width: 100%;
   }
   
   .hero .hero-stats {
-    max-width: 260px;
-    padding: 0.6rem;
+    max-width: 100%;
+    padding: 0.8rem;
+    gap: 0.5rem;
   }
   
   .hero .hero-stats .stat {
-    padding: 0.5rem;
-    gap: 0.6rem;
+    padding: 0.8rem;
+    gap: 0.8rem;
+  }
+  
+  .hero .hero-stats .stat strong {
+    font-size: 1.3rem;
   }
   
   .cta {
-    max-width: 240px;
-    padding: 0.7rem 1rem;
-    font-size: 0.85rem;
+    max-width: 100%;
+    padding: 0.9rem 1.2rem;
+    font-size: 0.9rem;
   }
   
   .hero .badge {
     font-size: 0.8rem;
-    padding: 0.6rem 0.8rem;
+    padding: 0.7rem 1rem;
+  }
+  
+  .hero-icons {
+    gap: 1.5rem;
+  }
+  
+  .knight-icon, .laptop-icon {
+    font-size: 2rem;
   }
 }
 
@@ -947,6 +1116,59 @@ section:not(.hero) {
 /* Additional mobile improvements */
 @media (max-width: 768px) {
   .container {
+    padding: 0 1rem;
+  }
+  
+  .game-section {
+    padding: 2.5rem 1rem;
+  }
+  
+  .contact {
+    padding: 3rem 1rem;
+  }
+  
+  .contact h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .contact .info {
+    max-width: 100%;
+    padding: 0 0.5rem;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  
+  .contact .links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .contact .links a {
+    margin: 0;
+    padding: 0.9rem 1.5rem;
+    background: rgba(94,96,206,0.12);
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+    font-size: 1rem;
+    border: 1px solid rgba(94,96,206,0.2);
+  }
+  
+  .contact .links a:hover {
+    background: rgba(94,96,206,0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(94,96,206,0.2);
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
     padding: 0 0.8rem;
   }
   
@@ -955,36 +1177,25 @@ section:not(.hero) {
   }
   
   .contact {
-    padding: 2rem 0.8rem;
+    padding: 2.5rem 0.8rem;
+  }
+  
+  .contact h2 {
+    font-size: 1.75rem;
   }
   
   .contact .info {
-    max-width: 100%;
-    padding: 0 0.5rem;
-  }
-  
-  .contact .links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    align-items: center;
+    font-size: 0.95rem;
   }
   
   .contact .links a {
-    margin: 0;
-    padding: 0.5rem 1rem;
-    background: rgba(94,96,206,0.1);
-    border-radius: 0.5rem;
-    transition: all 0.3s ease;
-  }
-  
-  .contact .links a:hover {
-    background: rgba(94,96,206,0.2);
-    transform: translateY(-2px);
+    padding: 0.8rem 1.3rem;
+    font-size: 0.95rem;
+    max-width: 100%;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .container {
     padding: 0 0.6rem;
   }
@@ -994,30 +1205,21 @@ section:not(.hero) {
   }
   
   .contact {
-    padding: 1.5rem 0.6rem;
+    padding: 2rem 0.6rem;
   }
   
-  .contact .links a {
-    padding: 0.4rem 0.8rem;
+  .contact h2 {
+    font-size: 1.5rem;
+  }
+  
+  .contact .info {
     font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0 0.4rem;
-  }
-  
-  .game-section {
-    padding: 1rem 0.4rem;
-  }
-  
-  .contact {
-    padding: 1rem 0.4rem;
+    padding: 0 0.25rem;
   }
   
   .contact .links a {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.85rem;
+    padding: 0.75rem 1.2rem;
+    font-size: 0.9rem;
+    max-width: 100%;
   }
 }

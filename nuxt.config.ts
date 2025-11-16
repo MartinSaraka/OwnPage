@@ -16,7 +16,13 @@ export default defineNuxtConfig({
       title: 'Martin Saraka – Full‑stack Developer',
       meta: [
         { name: 'description', content: 'Portfolio and biography of Martin Saraka, a full‑stack developer focusing on modern web technologies.' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+        { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover' },
+        { name: 'theme-color', content: '#5e60ce' },
+        { name: 'mobile-web-app-capable', content: 'yes' },
+        { name: 'apple-mobile-web-app-capable', content: 'yes' },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+        { name: 'format-detection', content: 'telephone=yes' },
+        { name: 'HandheldFriendly', content: 'true' }
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },

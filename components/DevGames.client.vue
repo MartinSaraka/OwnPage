@@ -829,48 +829,196 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 768px) {
+  .dev-games {
+    margin: 3rem 0;
+    padding: 1.8rem 1.2rem;
+  }
+  
+  .games-header h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .games-header p {
+    font-size: 0.95rem;
+  }
+  
+  .games-tabs {
+    gap: 0.8rem;
+    margin-bottom: 1.8rem;
+  }
+  
+  .tab-btn {
+    padding: 0.8rem 1.3rem;
+    font-size: 0.9rem;
+  }
+  
+  .game-container {
+    padding: 1.3rem;
+  }
+  
   .game-header {
     flex-direction: column;
     text-align: center;
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+  }
+  
+  .game-header h3 {
+    font-size: 1.3rem;
+  }
+  
+  .game-stats {
+    gap: 0.7rem;
+    justify-content: center;
+  }
+  
+  .game-stats span {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.85rem;
+  }
+  
+  .game-start {
+    padding: 2rem 1rem;
+  }
+  
+  .game-start h4 {
+    font-size: 1.25rem;
+  }
+  
+  .game-start p {
+    font-size: 0.95rem;
+  }
+  
+  .start-btn, .restart-btn {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.95rem;
   }
   
   .memory-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 0.8rem;
+    max-width: 100%;
   }
   
   .code-grid {
     grid-template-columns: 1fr;
-    gap: 0.8rem;
+    gap: 1rem;
   }
   
-  .game-card {
+  .code-snippet {
     padding: 1.2rem;
   }
   
-  .game-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.8rem;
+  .code-snippet pre {
+    font-size: 0.82rem;
   }
   
-  .game-card p {
+  .input-area {
+    height: 3rem;
     font-size: 0.9rem;
-    margin-bottom: 1rem;
+    padding: 0 1rem;
   }
   
-  .game-btn {
-    padding: 0.7rem 1.2rem;
+  .target-text {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    padding: 1.2rem;
+  }
+  
+  .memory-card .card-front {
+    font-size: 1.4rem;
+  }
+  
+  .memory-card .card-back {
+    font-size: 0.75rem;
+  }
+  
+  .game-over {
+    padding: 1.8rem 1.2rem;
+  }
+  
+  .game-over h4 {
+    font-size: 1.3rem;
+  }
+  
+  .game-over p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .dev-games {
+    padding: 1.5rem 1rem;
+    margin: 2rem 0;
+  }
+  
+  .games-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .games-header p {
+    font-size: 0.9rem;
+  }
+  
+  .games-tabs {
+    gap: 0.7rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .tab-btn {
+    padding: 0.7rem 1.1rem;
     font-size: 0.85rem;
   }
   
-  .stats {
-    gap: 0.8rem;
-    margin-bottom: 1rem;
+  .game-container {
+    padding: 1.2rem;
   }
   
-  .stat {
+  .game-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .game-header h3 {
+    font-size: 1.2rem;
+  }
+  
+  .game-stats {
+    gap: 0.6rem;
+  }
+  
+  .game-stats span {
+    padding: 0.4rem 0.75rem;
     font-size: 0.8rem;
-    padding: 0.5rem 0.8rem;
+  }
+  
+  .game-start {
+    padding: 1.5rem 0.8rem;
+  }
+  
+  .game-start h4 {
+    font-size: 1.15rem;
+  }
+  
+  .game-start p {
+    font-size: 0.9rem;
+  }
+  
+  .start-btn, .restart-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .code-grid {
+    gap: 0.9rem;
+  }
+  
+  .code-snippet {
+    padding: 1rem;
+  }
+  
+  .code-snippet pre {
+    font-size: 0.8rem;
   }
   
   .input-area {
@@ -880,7 +1028,12 @@ onBeforeUnmount(() => {
   
   .target-text {
     font-size: 0.85rem;
-    line-height: 1.4;
+    padding: 1rem;
+  }
+  
+  .memory-grid {
+    gap: 0.7rem;
+    max-width: 100%;
   }
   
   .memory-card .card-front {
@@ -892,7 +1045,7 @@ onBeforeUnmount(() => {
   }
   
   .game-over {
-    padding: 1.5rem;
+    padding: 1.5rem 1rem;
   }
   
   .game-over h4 {
@@ -904,123 +1057,129 @@ onBeforeUnmount(() => {
   }
 }
 
-@media (max-width: 600px) {
-  .game-header {
-    margin-bottom: 1.5rem;
+@media (max-width: 480px) {
+  .dev-games {
+    padding: 1.2rem 0.8rem;
+    margin: 1.5rem 0;
   }
   
-  .game-header h2 {
-    font-size: 1.5rem;
+  .games-header h2 {
+    font-size: 1.35rem;
   }
   
-  .game-header p {
-    font-size: 0.9rem;
-  }
-  
-  .game-card {
-    padding: 1rem;
-  }
-  
-  .game-card h3 {
-    font-size: 1.1rem;
-  }
-  
-  .game-card p {
+  .games-header p {
     font-size: 0.85rem;
   }
   
-  .game-btn {
-    padding: 0.6rem 1rem;
+  .games-tabs {
+    gap: 0.5rem;
+    margin-bottom: 1.3rem;
+  }
+  
+  .tab-btn {
+    padding: 0.65rem 1rem;
     font-size: 0.8rem;
   }
   
-  .stats {
-    gap: 0.6rem;
-    margin-bottom: 0.8rem;
+  .game-container {
+    padding: 1rem;
   }
   
-  .stat {
+  .game-header {
+    margin-bottom: 1.3rem;
+  }
+  
+  .game-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .game-stats {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .game-stats span {
+    padding: 0.35rem 0.65rem;
     font-size: 0.75rem;
-    padding: 0.4rem 0.6rem;
+  }
+  
+  .game-start {
+    padding: 1.3rem 0.7rem;
+  }
+  
+  .game-start h4 {
+    font-size: 1.05rem;
+  }
+  
+  .game-start p {
+    font-size: 0.85rem;
+  }
+  
+  .game-start .warning {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .start-btn, .restart-btn {
+    padding: 0.7rem 1.3rem;
+    font-size: 0.85rem;
+  }
+  
+  .code-grid {
+    gap: 0.8rem;
+  }
+  
+  .code-snippet {
+    padding: 0.9rem;
+  }
+  
+  .code-snippet pre {
+    font-size: 0.75rem;
   }
   
   .input-area {
     height: 2.6rem;
     font-size: 0.8rem;
+    padding: 0 0.8rem;
   }
   
   .target-text {
     font-size: 0.8rem;
+    padding: 0.9rem;
+    line-height: 1.4;
   }
   
   .memory-grid {
     gap: 0.6rem;
+    grid-template-columns: repeat(4, 1fr);
   }
   
   .memory-card .card-front {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
   
   .memory-card .card-back {
     font-size: 0.65rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .game-header h2 {
-    font-size: 1.3rem;
+    padding: 0.2rem;
   }
   
-  .game-header p {
-    font-size: 0.85rem;
+  .game-over {
+    padding: 1.3rem 0.8rem;
   }
   
-  .game-card {
-    padding: 0.8rem;
-  }
-  
-  .game-card h3 {
-    font-size: 1rem;
-  }
-  
-  .game-card p {
-    font-size: 0.8rem;
-  }
-  
-  .game-btn {
-    padding: 0.5rem 0.8rem;
-    font-size: 0.75rem;
-  }
-  
-  .stats {
-    gap: 0.5rem;
-    margin-bottom: 0.6rem;
-  }
-  
-  .stat {
-    font-size: 0.7rem;
-    padding: 0.3rem 0.5rem;
-  }
-  
-  .input-area {
-    height: 2.4rem;
-    font-size: 0.75rem;
-  }
-  
-  .target-text {
-    font-size: 0.75rem;
-  }
-  
-  .memory-grid {
-    gap: 0.5rem;
-  }
-  
-  .memory-card .card-front {
+  .game-over h4 {
     font-size: 1.1rem;
   }
   
-  .memory-card .card-back {
-    font-size: 0.6rem;
+  .game-over p {
+    font-size: 0.85rem;
+  }
+  
+  .game-over .error-msg,
+  .game-over .timeout-msg,
+  .game-over .success-msg {
+    font-size: 0.85rem;
+    padding: 0.65rem;
   }
 }
 </style>

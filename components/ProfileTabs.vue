@@ -2,7 +2,27 @@
   <section class="profile-tabs-section">
     <div class="container">
       <div class="tabs-container" data-aos="fade-up">
-        <div class="tab-buttons">
+        <!-- Mobile Dropdown Menu -->
+        <div v-if="isMobile" class="mobile-tab-selector">
+          <label for="tab-select" class="sr-only">Select a section</label>
+          <select 
+            id="tab-select"
+            v-model="activeTab" 
+            class="tab-dropdown"
+          >
+            <option 
+              v-for="tab in tabs" 
+              :key="tab.id"
+              :value="tab.id"
+            >
+              {{ tab.icon }} {{ tab.name }}
+            </option>
+          </select>
+          <div class="dropdown-icon">▼</div>
+        </div>
+
+        <!-- Desktop Tab Buttons -->
+        <div v-if="!isMobile" class="tab-buttons">
           <button 
             v-for="(tab, index) in tabs" 
             :key="tab.id"
@@ -384,6 +404,75 @@ const projects = [
   border: 1px solid rgba(255,255,255,0.3);
 }
 
+/* Mobile dropdown selector */
+.mobile-tab-selector {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.tab-dropdown {
+  width: 100%;
+  padding: 1rem 3rem 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 1rem;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-shadow: 0 8px 25px rgba(94,96,206,0.3);
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.tab-dropdown:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(94,96,206,0.4);
+}
+
+.tab-dropdown:focus {
+  border-color: rgba(255,255,255,0.4);
+  box-shadow: 0 8px 25px rgba(94,96,206,0.4), 0 0 0 3px rgba(94,96,206,0.2);
+}
+
+.tab-dropdown option {
+  background: #1a1a2e;
+  color: white;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.dropdown-icon {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 0.8rem;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+
+.tab-dropdown:focus + .dropdown-icon {
+  transform: translateY(-50%) rotate(180deg);
+}
+
 .tab-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -629,48 +718,32 @@ const projects = [
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .profile-tabs-section {
-    padding: 2rem 1rem;
+    padding: 2.5rem 1rem;
   }
   
   .tabs-container {
-    padding: 1.5rem;
+    padding: 1.8rem 1.2rem;
+    border-radius: 1.2rem;
   }
   
-  .tab-buttons {
-    overflow-x: auto;
-    overflow-y: hidden;
-    gap: 0.5rem;
-    justify-content: flex-start;
-    padding: 0.8rem 0.5rem;
-    /* Hide scrollbar but keep functionality */
-    scrollbar-width: thin;
-    scrollbar-color: rgba(94,96,206,0.3) transparent;
+  .mobile-tab-selector {
+    margin-bottom: 2rem;
   }
   
-  .tab-buttons::-webkit-scrollbar {
-    height: 4px;
+  .tab-dropdown {
+    padding: 1rem 3rem 1rem 1.5rem;
+    font-size: 0.95rem;
+    border-radius: 1rem;
   }
   
-  .tab-buttons::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  
-  .tab-buttons::-webkit-scrollbar-thumb {
-    background: rgba(94,96,206,0.3);
-    border-radius: 10px;
-  }
-  
-  .tab-btn {
-    justify-content: center;
-    padding: 1rem;
-    font-size: 0.85rem;
-    flex-shrink: 0;
-    min-width: fit-content;
+  .dropdown-icon {
+    right: 1.2rem;
+    font-size: 0.75rem;
   }
   
   .tab-panel h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    margin-bottom: 1.8rem;
   }
   
   .view-toggle {
@@ -680,82 +753,163 @@ const projects = [
   
   .toggle-btn {
     width: 100%;
-    padding: 0.8rem;
-    font-size: 0.85rem;
+    padding: 0.9rem;
+    font-size: 0.9rem;
   }
   
   .experience-cards {
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
+    padding: 0;
+    overflow-x: visible;
   }
   
   .experience-cards > * {
-    flex: 0 0 85%;
-    min-width: 280px;
+    flex: 1 1 auto;
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
   }
   
   .project-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.2rem;
   }
   
   .about-content {
-    font-size: 1rem;
+    font-size: 1.05rem;
     padding: 0 0.5rem;
+    line-height: 1.8;
   }
   
   .skills-list {
-    gap: 0.6rem;
+    gap: 0.7rem;
     padding: 0 0.5rem;
   }
   
   .skill-tag {
-    font-size: 0.85rem;
-    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    padding: 0.6rem 1.1rem;
+    -webkit-tap-highlight-color: transparent;
   }
   
   .education-list {
     max-width: 100%;
-    padding: 0 0.5rem;
+    padding: 0;
   }
   
   .education-list li {
-    padding: 1.2rem;
-    margin-bottom: 0.8rem;
+    padding: 1.3rem;
+    margin-bottom: 1rem;
   }
 }
 
 @media (max-width: 600px) {
   .profile-tabs-section {
-    padding: 1.5rem 0.8rem;
+    padding: 2rem 0.8rem;
   }
   
   .tabs-container {
-    padding: 1.2rem;
+    padding: 1.5rem 1rem;
   }
   
-  .tab-btn {
-    padding: 0.8rem;
-    font-size: 0.8rem;
+  .tab-dropdown {
+    padding: 0.9rem 2.8rem 0.9rem 1.3rem;
+    font-size: 0.9rem;
+  }
+  
+  .dropdown-icon {
+    right: 1rem;
+    font-size: 0.7rem;
+  }
+  
+  .tab-panel h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .about-content {
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+  
+  .experience-cards {
+    gap: 0.9rem;
+  }
+  
+  .experience-cards > * {
+    min-width: 100%;
+    width: 100%;
+  }
+  
+  .skill-tag {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.95rem;
+  }
+  
+  .education-list li {
+    padding: 1.1rem;
+  }
+  
+  .education-list .degree {
+    font-size: 1.05rem;
+  }
+  
+  .education-list .institution {
+    font-size: 0.95rem;
+  }
+  
+  .education-list .years {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-tabs-section {
+    padding: 1.5rem 0.6rem;
+  }
+  
+  .tabs-container {
+    padding: 1.3rem 0.9rem;
+  }
+  
+  .tab-dropdown {
+    padding: 0.85rem 2.5rem 0.85rem 1.2rem;
+    font-size: 0.85rem;
+  }
+  
+  .dropdown-icon {
+    right: 0.9rem;
+    font-size: 0.65rem;
   }
   
   .tab-panel h2 {
     font-size: 1.3rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.3rem;
+  }
+  
+  .tab-content {
+    min-height: 300px;
   }
   
   .about-content {
-    font-size: 0.95rem;
-    line-height: 1.6;
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+  
+  .experience-cards {
+    gap: 0.8rem;
   }
   
   .experience-cards > * {
-    flex: 0 0 90%;
-    min-width: 260px;
+    min-width: 100%;
+    width: 100%;
   }
   
   .skill-tag {
     font-size: 0.8rem;
-    padding: 0.4rem 0.8rem;
+    padding: 0.45rem 0.85rem;
   }
   
   .education-list li {
@@ -772,44 +926,6 @@ const projects = [
   
   .education-list .years {
     font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .profile-tabs-section {
-    padding: 1rem 0.5rem;
-  }
-  
-  .tabs-container {
-    padding: 1rem;
-  }
-  
-  .tab-btn {
-    padding: 0.7rem;
-    font-size: 0.75rem;
-  }
-  
-  .tab-panel h2 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .about-content {
-    font-size: 0.9rem;
-  }
-  
-  .experience-cards > * {
-    flex: 0 0 95%;
-    min-width: 240px;
-  }
-  
-  .skill-tag {
-    font-size: 0.75rem;
-    padding: 0.35rem 0.7rem;
-  }
-  
-  .education-list li {
-    padding: 0.8rem;
   }
 }
 </style>
